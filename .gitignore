@@ -1,0 +1,43 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.vs/
+publish/
+installer/app/
+installer/extension/
+installer/DevChat-Setup-*.exe
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Build artifacts
+*.exe
+*.dll
+*.pdb
+
+# Data (local dev)
+tools/rename.ps1
+tools/fake-ext.mjs
+tools/read-history.fsx
+tools/*.fsx
+
+# Local security scanner
+.mimosa/
+
+# Temp
+*.tmp
+*.bak

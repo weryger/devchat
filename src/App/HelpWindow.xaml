@@ -1,0 +1,61 @@
+<Window x:Class="DevChat.App.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ℹ DevChat — инструкция" Width="780" Height="680" WindowStartupLocation="CenterOwner"
+        Background="{StaticResource Bg0}" FontFamily="Segoe UI">
+    <ScrollViewer Padding="24,18" VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="700">
+
+            <TextBlock Text="Что это" Foreground="{StaticResource Tx}" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="13" TextWrapping="Wrap" LineHeight="19"
+                       Text="DevChat — ИИ-агент для разработки, работающий через веб-чаты DeepSeek и ChatGPT в вашем браузере. Без API-ключей и оплаты: приложение управляет настоящим браузером через расширение, а ответы моделей приходят обратно в приложение. Доступны три режима: обычный чат, автономный агент (файлы и команды) и команда специалистов (тимлид + UX/дизайнер/фронтенд/бэкенд/QA)."/>
+
+            <TextBlock Text="1. Установка (один раз)" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+1. Установите .NET 8 SDK (winget install Microsoft.DotNet.SDK.8) и Node.js 18+.
+2. Соберите расширение: в папке src/extension выполните «npm install», затем «npm run build» — появится папка dist.
+3. Откройте Chrome → chrome://extensions → включите «Режим разработчика» → «Загрузить распакованное расширение» → выберите src/extension/dist.
+4. Войдите в chat.deepseek.com и/или chatgpt.com в этом Chrome (обычный логин, сессия сохранится).
+5. Запустите приложение: «dotnet run --project src/App» (или ярлыком). В шапке должна загореться зелёная точка «Мост: подключено»."/>
+
+            <TextBlock Text="2. Ежедневный запуск" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+1. Откройте Chrome (он должен быть запущен — расширение подключится само, до 30 секунд).
+2. Запустите приложение. Красная точка в шапке = расширение ещё не подключилось, зелёная = всё готово.
+3. Настройки (⚙): порт/токен (по умолчанию 8765/DevChat-dev-token), рабочая папка проекта — обязательна для агентных режимов, тумблер «не давать ПК спать» для ночных задач."/>
+
+            <TextBlock Text="3. Режимы работы" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+• 💬 Чат — обычный диалог с моделью (Enter — отправить, Shift+Enter — новая строка).
+• 🔧 Агент — модель работает с файлами: читает, пишет, запускает команды. Все записи — в пределах рабочей папки.
+• 🤝 Команда — тимлид составляет план и раздаёт пункты специалистам (список и правила — в разделе 🤖 Агентов). Каждый этап виден в ленте с таймингами, план — чеклистом справа.
+Провайдер (🤖 DeepSeek / 🧠 ChatGPT) переключается кликом по чипу в поле ввода — для всей задачи целиком."/>
+
+            <TextBlock Text="4. Подтверждения и безопасность" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+Режимы подтверждений (чип в поле ввода): 🔐 все действия / ⚙ только команды / 🔓 без подтверждений.
+Перед перезаписью файла показывается диф; оригиналы сохраняются в журнал — кнопка «↩ Откат» на вкладке «Файлы» вернёт всё, что агент менял в этом чате. Команды выполняются в cmd с таймаутом 60 секунд."/>
+
+            <TextBlock Text="5. Кнопки шапки" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+• 🩺 Диагностика — проверяет мост, вход в нейросеть и живость селекторов; при проблеме показывает дамп страницы.
+• 🤖 Агенты — создание/редактирование/вкл-выкл состава команды, импорт файлов скиллов.
+• 🔌 — перезагрузка расширения: обязательно после каждого обновления кода расширения (иначе Chrome работает со старой версией).
+• ⚙ Настройки."/>
+
+            <TextBlock Text="6. Если что-то не работает" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Text="
+• «Мост: ожидание» — Chrome закрыт, либо расширение выключено/не загружено. Проверьте chrome://extensions.
+• «Лимит использования, сброс в …» — у нейросети закончился дневной лимит: дождитесь сброса (ошибка показывает время) или переключите провайдер.
+• Не открывайте DevTools на вкладках, где работают агенты — Chrome отбирает у расширения отладку (приложение переподключится само, но ход повторится).
+• Не закрывайте вкладки DeepSeek/ChatGPT во время работы задачи.
+• Полный журнал: %AppData%\DevChat\log.txt — в нём виден каждый ход с обеих сторон.
+• Прогресс команды хранится в базе: если задача прервалась — напишите «продолжить» в том же чате, продолжится с места остановки. «🔄 Новая сессия» сбрасывает контекст нейросети и план."/>
+
+            <TextBlock Text="7. Ночные задачи" Foreground="{StaticResource Tx}" FontSize="15" FontWeight="SemiBold" Margin="0,18,0,6"/>
+            <TextBlock Foreground="{StaticResource Tx2}" FontSize="12.5" TextWrapping="Wrap" LineHeight="18.5" Margin="0,0,0,10"
+                       Text="Включите в настройках «Не давать ПК спать», поставьте подтверждения «🔓 выкл», оставьте Chrome открытым и запускайте задачу. Зависшие ходы повторяются автоматически; к утру задача будет выполнена или остановлена с сохранённым прогрессом — «продолжить» доведёт её до конца."/>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
