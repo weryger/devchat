@@ -58,57 +58,6 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void CycleWorkMode() => WorkModeIndex = (WorkModeIndex + 1) % 3;
 
-    /// <summary>
-    /// Установить расширение Chrome ПОСТОЯННО: открывает chrome://extensions
-    /// и показывает пошаговую инструкцию «Load unpacked» (одноразовое действие).
-    /// </summary>
-    [RelayCommand]
-    private void InstallExtension()
-    {
-        // ищем папку расширения
-        var exeDir = AppContext.BaseDirectory;
-        var candidates = new[]
-        {
-            Path.Combine(exeDir, "extension"),
-            Path.Combine(exeDir, "..", "..", "..", "..", "src", "extension", "dist"),
-        };
-        var extPath = candidates.FirstOrDefault(p => Directory.Exists(p) && File.Exists(Path.Combine(p, "manifest.json")));
-        if (extPath is null)
-        {
-            Messages.Add(new ChatMessageViewModel { Role = "system", Text = "🔌 Папка расширения не найдена рядом с приложением." });
-            return;
-        }
-        extPath = Path.GetFullPath(extPath);
-
-        // копируем путь в буфер обмена (пользователь вставит в диалог выбора папки)
-        try { System.Windows.Clipboard.SetText(extPath); } catch { /* буфер занят */ }
-
-        // открываем chrome://extensions
-        var chrome = new[]
-        {
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Google", "Chrome", "Application", "chrome.exe"),
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Google", "Chrome", "Application", "chrome.exe"),
-        }.FirstOrDefault(File.Exists);
-
-        if (chrome is not null)
-        {
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(chrome)
-            {
-                Arguments = "chrome://extensions",
-                UseShellExecute = true,
-            });
-        }
-
-        Messages.Add(new ChatMessageViewModel { Role = "system", Text =
-            $"🔌 Установка расширения (один раз):\n\n" +
-            $"1. В Chrome открылась страница расширений\n" +
-            $"2. Включите «Режим разработчика» (переключатель справа сверху)\n" +
-            $"3. Нажмите «Загрузить распакованное расширение»\n" +
-            $"4. Вставьте путь (уже в буфере): {extPath}\n" +
-            $"5. Нажмите «Выбор папки»\n\n" +
-            $"После этого расширение установлено ПОСТОЯННО и переживает перезапуски Chrome." });
-    }
-
     /// <summary>0 — DeepSeek, 1 — ChatGPT. Сохраняется в настройках.</summary>
     [ObservableProperty]
     private int _providerIndex;
@@ -237,10 +186,9 @@ public partial class MainViewModel : ObservableObject
         setupTimer.Tick += (_, _) =>
         {
             setupTimer.Stop();
-            if (!_bridge.IsConnected && !_extensionAutoInstalled)
+            if (!_bridge.IsConnected)
             {
-                _extensionAutoInstalled = true;
-                Messages.Add(new ChatMessageViewModel { Role = "system", Text = "🔌 Добро пожаловать в DevChat!\n\nРасширение Chrome ещё не установлено. Нажмите кнопку подключения в шапке для пошаговой установки (займёт 30 секунд, один раз)." });
+                Messages.Add(new ChatMessageViewModel { Role = "system", Text = "🔌 Расширение Chrome не подключено.\n\nУстановите DevChat заново (инсталятор настроит расширение автоматически) или загрузите его вручную в chrome://extensions → «Загрузить распакованное» → папка extension в директории DevChat." });
             }
         };
         setupTimer.Start();
@@ -252,8 +200,6 @@ public partial class MainViewModel : ObservableObject
 
         RefreshFiles();
     }
-
-    private bool _extensionAutoInstalled;
 
     private async Task CheckForUpdatesAsync()
     {

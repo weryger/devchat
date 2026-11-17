@@ -12,8 +12,7 @@
         <Border DockPanel.Dock="Top" Background="{StaticResource Bg1}" Padding="14,8" BorderBrush="{StaticResource Bd}" BorderThickness="0,0,0,1">
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
-                    <Image Source="/Resources/logo.png" Width="32" Height="32" VerticalAlignment="Center" Margin="0,0,10,0" RenderOptions.BitmapScalingMode="HighQuality"/>
-                    <TextBlock Text="DevChat" Foreground="{StaticResource Tx}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <Image Source="/Resources/logo.png" Height="36" Stretch="Uniform" VerticalAlignment="Center" Margin="0,0,0,0" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Border Background="{StaticResource Bg2}" CornerRadius="7" Padding="10,5" BorderBrush="{StaticResource Bd}" BorderThickness="1" VerticalAlignment="Center" Margin="0,0,12,0">
@@ -28,9 +27,6 @@
                     </Button>
                     <Button Command="{Binding ReloadExtensionCommand}" ToolTip="Обновить подключение расширения" Padding="5,4" Margin="4,0,0,0">
                         <Image Source="/Resources/connection.png" Width="24" Height="24"/>
-                    </Button>
-                    <Button Command="{Binding InstallExtensionCommand}" ToolTip="Установить расширение в Chrome" Padding="5,4" Margin="4,0,0,0">
-                        <Image Source="/Resources/connection.png" Width="24" Height="24" Opacity="0.6"/>
                     </Button>
                     <Button Command="{Binding OpenAgentsCommand}" ToolTip="Агенты: состав команды, правила, права" Padding="5,4" Margin="4,0,0,0">
                         <Image Source="/Resources/bots.png" Width="24" Height="24"/>
