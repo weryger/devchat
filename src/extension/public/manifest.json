@@ -1,8 +1,14 @@
 {
   "manifest_version": 3,
   "name": "DevChat Bridge",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Мост DevChat: автоматизация веб-чатов ИИ (playwright-crx)",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "permissions": ["debugger", "tabs", "alarms", "storage", "clipboardRead", "clipboardWrite"],
   "host_permissions": ["https://chat.deepseek.com/*", "https://chatgpt.com/*", "http://127.0.0.1/*"],
   "background": { "service_worker": "background.js", "type": "module" }
