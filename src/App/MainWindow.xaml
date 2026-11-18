@@ -23,19 +23,19 @@
                     </Border>
                     <!-- Порядок: диагностика → обновление → агенты → настройки → информация -->
                     <Button Command="{Binding DiagnoseCommand}" ToolTip="Диагностика моста" Padding="5,4">
-                        <Image Source="/Resources/check.png" Width="24" Height="24"/>
+                        <Image Source="/Resources/check.ico" Width="24" Height="24"/>
                     </Button>
                     <Button Command="{Binding ReloadExtensionCommand}" ToolTip="Обновить подключение расширения" Padding="5,4" Margin="4,0,0,0">
-                        <Image Source="/Resources/connection.png" Width="24" Height="24"/>
+                        <Image Source="/Resources/connection.ico" Width="24" Height="24"/>
                     </Button>
                     <Button Command="{Binding OpenAgentsCommand}" ToolTip="Агенты: состав команды, правила, права" Padding="5,4" Margin="4,0,0,0">
-                        <Image Source="/Resources/bots.png" Width="24" Height="24"/>
+                        <Image Source="/Resources/bots.ico" Width="24" Height="24"/>
                     </Button>
                     <Button Command="{Binding OpenSettingsCommand}" ToolTip="Настройки проекта" Padding="5,4" Margin="4,0,0,0">
-                        <Image Source="/Resources/settings.png" Width="24" Height="24"/>
+                        <Image Source="/Resources/settings.ico" Width="24" Height="24"/>
                     </Button>
                     <Button Click="Help_Click" ToolTip="Инструкция по использованию" Padding="5,4" Margin="4,0,0,0">
-                        <Image Source="/Resources/info.png" Width="24" Height="24"/>
+                        <Image Source="/Resources/info.ico" Width="24" Height="24"/>
                     </Button>
                 </StackPanel>
             </DockPanel>

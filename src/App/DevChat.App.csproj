@@ -6,6 +6,8 @@
     <UseWPF>true</UseWPF>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>1.0.0</Version>
+    <ApplicationIcon>Resources\DevChat.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,12 +22,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\*.png" />
-    <Resource Include="Resources\*.ico" />
+    <Resource Include="Resources\*.ico" Exclude="Resources\DevChat.ico" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <Version>1.0.0</Version>
-    <ApplicationIcon>Resources\DevChat.ico</ApplicationIcon>
-  </PropertyGroup>
 
 </Project>
