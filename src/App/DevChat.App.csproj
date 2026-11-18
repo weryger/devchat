@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\*.png" />
-    <Resource Include="Resources\*.ico" Exclude="Resources\DevChat.ico" />
+    <Resource Include="Resources\*.ico" />
   </ItemGroup>
 
 </Project>
