@@ -35,6 +35,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "app\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; CRX-расширение (для автоустановки через реестр)
 Source: "extension.crx"; DestDir: "{app}"; Flags: ignoreversion
+; Распакованное расширение (для ручной установки через chrome://extensions)
+Source: "extension\*"; DestDir: "{app}\extension"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
