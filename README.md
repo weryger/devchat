@@ -136,7 +136,7 @@ DevChat превращает бесплатный веб-чат (DeepSeek, ChatG
 
 ### Установка (инсталятор)
 
-1. Скачайте `DevChat-Setup-x.x.x.exe` из [Releases](https://github.com/bmcoder/DevChat/releases)
+1. Скачайте `DevChat-Setup-x.x.x.exe` из [Releases](https://github.com/weryger/devchat/releases)
 2. Запустите инсталятор
 3. При первом запуске нажмите кнопку **подключения** в шапке — установите расширение в Chrome (один раз, ~30 секунд)
 4. Войдите в DeepSeek/ChatGPT в открывшемся Chrome
@@ -145,7 +145,7 @@ DevChat превращает бесплатный веб-чат (DeepSeek, ChatG
 ### Сборка из исходников
 
 ```bash
-git clone https://github.com/bmcoder/DevChat.git
+git clone https://github.com/weryger/devchat.git
 cd DevChat
 
 # Chrome-расширение
@@ -246,4 +246,4 @@ MIT License — см. [LICENSE](LICENSE)
 
 ## Автор
 
-**bmcoder** — [GitHub](https://github.com/bmcoder)
+**weryger** — [GitHub](https://github.com/weryger)

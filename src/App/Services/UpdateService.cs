@@ -7,11 +7,11 @@ public sealed record UpdateInfo(string? LatestVersion, string? DownloadUrl, stri
 
 /// <summary>
 /// Проверка обновлений через GitHub Releases API.
-/// Репозиторий: https://github.com/bmcoder/DevChat
+/// Репозиторий: https://github.com/weryger/devchat
 /// </summary>
 public static class UpdateService
 {
-    private const string RepoApi = "https://api.github.com/repos/bmcoder/DevChat/releases/latest";
+    private const string RepoApi = "https://api.github.com/repos/weryger/devchat/releases/latest";
 
     public static string CurrentVersion =>
         Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "1.0.0";
