@@ -195,6 +195,14 @@ public partial class MainViewModel : ObservableObject
         // если мост подключился до таймера — отменяем
         bridge.Connected += () => _dispatcher.BeginInvoke(() => setupTimer.Stop());
 
+        // если чатов нет — создаём первый автоматически
+        if (Chats.Count == 0)
+        {
+            var id = _history.CreateChat();
+            Chats.Add(new ChatListItemViewModel { Id = id });
+            SelectedChat = Chats[0];
+        }
+
         // проверка обновлений с GitHub (не блокирует UI)
         _ = CheckForUpdatesAsync();
 
